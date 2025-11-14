@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Projects - KyuraID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+
+        .cyber-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .cyber-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cyber-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #000000, #fffefe, #000000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #000000;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cyber-header p {
+            color: #cccccc;
+            font-size: 1.2rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: rgb(0, 0, 0);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgb(255, 255, 255);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffffff; 
+            box-shadow: 0 10px 30px rgba(247, 247, 247, 0.2);
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            color: rgb(255, 255, 255);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, #000000, #fffefe);
+            color: #000000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(247, 247, 247, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #000000, #fffefe);
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .project-link.outline {
+            background: transparent;
+            border: 2px solid #ececec;
+            color: #ffffff;
+        }
+
+        .project-link.outline:hover {
+            background: rgb(0, 0, 0);
+        }
+
+        /* Demo Sections */
+        .demo-section {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        .demo-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .terminal {
+            background: #000000;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            color: #ffffff;
+        }
+
+        .terminal .command {
+            color: #ffffff;
+        }
+
+        .terminal .output {
+            color: #cccccc;
+            margin-top: 0.5rem;
+            white-space: pre-line;
+        }
+
+        /* Skills Overview */
+        .skills-overview {
+            background: rgb(0, 0, 0);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, #000000, #fffefe);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 255, 136, 0.05);
+        }
+        .skill-item h4 {
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item p {
+            color: #000000;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation */
+        .nav-cyber {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .nav-cyber a {
+            color: #fffefe;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #f5fdff;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-cyber a:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cyber-header h1 {
+                font-size: 2rem;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .nav-cyber a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-container">
+        <!-- Header -->
+        <div class="cyber-header">
+            <h1>🔒 Cyber Security Projects</h1>
+            <p>Learning Journey • Basic Tools • Security Fundamentals</p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            
+            <!-- Project 1: Basic Network Scan -->
+            <div class="project-card">
+                <div class="project-icon">🌐</div>
+                <h3>Basic Network Discovery</h3>
+                <p>Belajar menggunakan Nmap untuk scan jaringan lokal dan menemukan devices yang terhubung.</p>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Nmap</span>
+                    <span class="tech-tag">Network Basics</span>
+                    <span class="tech-tag">Command Line</span>
+                </div>
+                
+                <div class="project-links">
+                    <button class="project-link" onclick="showDemo('nmap-demo')">View Demo</button>
+                    <a href="https://github.com/kyuraid/basic-network-scan" class="project-link outline" target="_blank">Learning Notes</a>
+                </div>
+            </div>
+
+            <!-- Project 2: Website Security Check -->
+            <div class="project-card">
+                <div class="project-icon">🕵️</div>
+                <h3>Website Security Basics</h3>
+                <p>Mempelajari OWASP ZAP untuk scan website sederhana dan memahami common vulnerabilities.</p>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">OWASP ZAP</span>
+                    <span class="tech-tag">Web Security</span>
+                    <span class="tech-tag">Beginner</span>
+                </div>
+                
+                <div class="project-links">
+                    <button class="project-link" onclick="showDemo('web-demo')">Scan Results</button>
+                    <a href="https://github.com/kyuraid/web-security-basics" class="project-link outline" target="_blank">Study Materials</a>
+                </div>
+            </div>
+
+            <!-- Project 3: Network Monitoring -->
+            <div class="project-card">
+                <div class="project-icon">📊</div>
+                <h3>Network Traffic Monitoring</h3>
+                <p>Belajar menggunakan Wireshark untuk melihat dan menganalisis traffic jaringan sederhana.</p>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Wireshark</span>
+                    <span class="tech-tag">Packet Analysis</span>
+                    <span class="tech-tag">Monitoring</span>
+                </div>
+                
+                <div class="project-links">
+                    <button class="project-link" onclick="showDemo('packet-demo')">Traffic Demo</button>
+                    <a href="https://github.com/kyuraid/network-monitoring" class="project-link outline" target="_blank">Tutorial</a>
+                </div>
+            </div>
+
+            <!-- Project 4: Security Fundamentals -->
+            <div class="project-card">
+                <div class="project-icon">📚</div>
+                <h3>Security Learning Lab</h3>
+                <p>Kumpulan notes dan experiments tentang fundamental keamanan siber dan best practices.</p>
+                
+                <div class="tech-tags">
+                    <span class="tech-tag">Learning</span>
+                    <span class="tech-tag">Fundamentals</span>
+                    <span class="tech-tag">Practice</span>
+                </div>
+                
+                <div class="project-links">
+                    <button class="project-link" onclick="showDemo('learning-demo')">Study Notes</button>
+                    <a href="https://github.com/kyuraid/security-learning" class="project-link outline" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Demo Sections -->
+        <div id="nmap-demo" class="demo-section">
+            <h3>🌐 Basic Network Scan dengan Nmap</h3>
+            <div class="terminal">
+                <div class="command">$ nmap -sn 192.168.1.0/24</div>
+                <div class="output">
+Scanning for active hosts...
+Host 192.168.1.1 is up (router)
+Host 192.168.1.101 is up (my-laptop)
+Host 192.168.1.102 is up (smartphone)
+3 hosts found in local network
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #cccccc;">
+                <strong>Yang dipelajari:</strong> Network discovery, basic scanning, understanding local network topology
+            </p>
+        </div>
+
+        <div id="web-demo" class="demo-section">
+            <h3>🕵️ Website Security Scan Results</h3>
+            <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #00ff88;">Basic Security Check:</h4>
+                <ul style="color: #cccccc; margin-left: 1.5rem;">
+                    <li>✅ HTTPS encryption detected</li>
+                    <li>⚠️ Mixed content warning</li>
+                    <li>✅ Security headers present</li>
+                    <li>⚠️ Outdated software version</li>
+                </ul>
+                <p style="margin-top: 1rem; color: #00ccff;">
+                    <strong>Tools used:</strong> OWASP ZAP, Browser DevTools, Security Headers Check
+                </p>
+            </div>
+        </div>
+
+        <div id="packet-demo" class="demo-section">
+            <h3>📊 Network Traffic Monitoring</h3>
+            <div class="terminal">
+                <div class="command">$ wireshark (capturing HTTP traffic)</div>
+                <div class="output">
+Source: 192.168.1.101 → Destination: 142.250.185.14
+Protocol: TCP/HTTP
+Website: google.com
+Data: GET request to homepage
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #cccccc;">
+                <strong>Learning:</strong> Understanding network protocols, packet structure, basic traffic analysis
+            </p>
+        </div>
+
+        <div id="learning-demo" class="demo-section">
+            <h3>📚 Security Fundamentals Notes</h3>
+            <div style="background: #000000; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #00ff88;">Currently Studying:</h4>
+                <ul style="color: #cccccc; margin-left: 1.5rem;">
+                    <li>🔹 Network+ certification concepts</li>
+                    <li>🔹 OWASP Top 10 vulnerabilities</li>
+                    <li>🔹 Linux command line basics</li>
+                    <li>🔹 Cryptography fundamentals</li>
+                    <li>🔹 Security best practices</li>
+                </ul>
+                <p style="margin-top: 1rem; color: #00ccff;">
+                    <strong>Progress:</strong> Building foundation knowledge step by step
+                </p>
+            </div>
+        </div>
+
+        <!-- Skills Overview -->
+        <div class="skills-overview">
+            <h3 style="text-align: center; color: #ffffff; margin-bottom: 2rem;">🛠️ Cyber Security Learning Path</h3>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h4>Network Basics</h4>
+                    <p>IP, DNS, Protocols</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Tools Familiarity</h4>
+                    <p>Nmap, Wireshark</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Web Security</h4>
+                    <p>OWASP, HTTPS</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Linux CLI</h4>
+                    <p>Basic Commands</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Security Concepts</h4>
+                    <p>Encryption, Auth</p>
+                </div>
+                <div class="skill-item">
+                    <h4>Practice Labs</h4>
+                    <p>Hands-on Learning</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-cyber">
+            <a href="index.html">← Back to Main Portfolio</a>
+        </div>
+    </div>
+
+    <script>
+        function showDemo(demoId) {
+            // Hide all demo sections
+            document.querySelectorAll('.demo-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected demo
+            const demoSection = document.getElementById(demoId);
+            if (demoSection) {
+                demoSection.classList.add('active');
+                demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Close demo when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.project-link') && !event.target.closest('.demo-section')) {
+                document.querySelectorAll('.demo-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+            }
+        });
+
+        // Add keyboard escape to close demos
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.demo-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
